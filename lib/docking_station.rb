@@ -14,7 +14,7 @@ class DockingStation
   def dock(bike)
     raise "Docking Station full" if @bikes.length >= 10
     @bikes << bike if bike.class == Bike
-   return bike
+    return bike
   end
 
   def show_bikes
