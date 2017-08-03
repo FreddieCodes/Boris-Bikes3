@@ -4,6 +4,7 @@ describe DockingStation do
   it {expect(subject).to respond_to :release_bike}
 
   it "gets a bike" do
+    subject.dock(Bike.new)
     bike = subject.release_bike
     expect(bike).to be_truthy
   end
@@ -30,7 +31,9 @@ describe DockingStation do
     expect(subject.show_bikes.length).to eq(10)
   end
 
-  
+  it 'does not release bikes from an empty station' do
+    expect{subject.release_bike}.to raise_error('No bikes available')
+  end
 
 
 end
