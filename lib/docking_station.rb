@@ -1,9 +1,11 @@
 class DockingStation
-  attr_reader :bikes
+  attr_reader :bikes, :capacity
 
   # constants
+  $DEFAULT_CAPACITY = 20
 
-  def initialize(cap = 20)
+
+  def initialize(cap = $DEFAULT_CAPACITY)
     @bikes = []
     @capacity = cap
   end

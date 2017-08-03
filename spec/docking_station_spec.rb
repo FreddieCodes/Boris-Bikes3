@@ -45,4 +45,13 @@ describe DockingStation do
     subject.release_bike(2)
     expect(subject.bikes.length).to eq(1)
   end
+
+  it 'has a default capacity of 20' do
+    expect(subject.capacity).to eq(20)
+  end
+
+  it 'can have a custom capacity' do
+    big_station = DockingStation.new(100)
+    expect(big_station.capacity).to eq(100)
+  end
 end
