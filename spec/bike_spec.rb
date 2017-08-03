@@ -1,4 +1,4 @@
-require "docking_station.rb"
+require "bike.rb"
 
 describe Bike do
 it {expect(subject).to respond_to :working?}

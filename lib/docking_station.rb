@@ -3,10 +3,3 @@ class DockingStation
     Bike.new
   end
 end
-
-
-class Bike
-  def working?
-    true
-  end
-end
