@@ -2,20 +2,18 @@ class DockingStation
   attr_reader :bikes
 
   # constants
-  $DEFAULT_CAPACITY = 20
 
-  def initialize
+  def initialize(cap = 20)
     @bikes = []
+    @capacity = cap
   end
 
   def release_bike(count = 1)
 
     released_bikes = []
 
-    raise 'No bikes available' if @bikes.empty?
-
     @bikes.each_with_index do |bike, index|
-      raise 'No bikes available' if @bikes.empty?
+      raise 'No bikes available' if empty?
       if bike.working?
         released_bikes << bike
         @bikes.delete_at index
@@ -31,19 +29,34 @@ class DockingStation
   end
 
   def dock(bike)
-    raise 'Docking Station full' if @bikes.length >= 20
+    raise 'Docking Station full' if full?
+
     @bikes << bike if bike.class == Bike
     return bike
   end
+
 
   def show_bikes
     @bikes
   end
 
-  def stock_bikes(n = $DEFAULT_CAPACITY)
-    n = ($DEFAULT_CAPACITY - @bikes.length) if (n+@bikes.length) > $DEFAULT_CAPACITY
+  def stock_bikes(n = @capacity)
+    n = available_space if (n+@bikes.length) > @capacity
     n.times {@bikes << Bike.new}
     "#{n} new bike#{"s" if n>1} have been stocked into the docking station"
   end
 
+private
+
+  def full?
+    @bikes.length == @capacity
+  end
+
+  def empty?
+    @bikes.length == 0
+  end
+
+  def available_space
+    @capacity - @bikes.length
+  end
 end

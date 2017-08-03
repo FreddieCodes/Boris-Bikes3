@@ -39,4 +39,10 @@ describe DockingStation do
     20.times {subject.dock(Bike.new)}
     expect{subject.dock(Bike.new)}.to raise_error('Docking Station full')
   end
+
+  it "can release multiple bikes" do
+    3.times {subject.dock(Bike.new)}
+    subject.release_bike(2)
+    expect(subject.bikes.length).to eq(1)
+  end
 end
