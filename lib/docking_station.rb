@@ -30,8 +30,10 @@ class DockingStation
     raise 'No bikes available'
   end
 
-  def dock(bike)
+  def dock(bike, broken = false)
     raise 'Docking Station full' if full?
+
+    bike.report_broken if broken
 
     @bikes << bike if bike.class == Bike
     return bike

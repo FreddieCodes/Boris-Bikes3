@@ -54,4 +54,20 @@ describe DockingStation do
     big_station = DockingStation.new(100)
     expect(big_station.capacity).to eq(100)
   end
+
+  it "can have two parameters" do
+    expect(subject).to respond_to(:dock).with(2).arguments
+  end
+
+  it 'can report a bike as broken' do
+    bike = Bike.new
+    expect(bike).to respond_to :report_broken
+  end
+
+  it 'does not release broken bikes' do
+    bike = Bike.new
+    subject.dock(bike, true)
+    expect{subject.release_bike}.to raise_error('No bikes available')
+  end
+
 end
