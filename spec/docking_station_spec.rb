@@ -98,7 +98,7 @@ describe DockingStation do
   it 'does not release broken bikes' do
     allow(bike). to receive_messages(
     :class => Bike,
-    :working? => true,
+    :working? => false,
     :report_broken => nil
     )
     subject.dock(bike, true)
